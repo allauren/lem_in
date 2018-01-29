@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:35:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/28 03:56:20 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/29 18:26:14 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int		ft_count_space(char *str)
 void	ft_select_error(t_parse *p, t_options *s)
 {
 	if (!s->path && !p->error)
-		ft_perror("no path written\n");
+		ft_perror("No path written\n");
 	else if (!p->list && !p->error)
-		ft_perror("no room written\n");
+		ft_perror("No room written\n");
 	else if (!s->start && !p->error)
-		ft_perror("no start written\n");
+		ft_perror("No start written\n");
 	else if (!s->end && !p->error)
-		ft_perror("no end written\n");
+		ft_perror("No end written\n");
 }
 
 int		ft_smart_pars(char *str, t_parse *p, t_options *s)

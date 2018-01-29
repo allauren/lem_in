@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:23:00 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/29 17:14:37 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/29 18:26:19 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@ void	ft_is_first(char *str, t_options *f, t_parse *p)
 	{
 		ft_strdel(&str);
 		ft_strdel(&ptr);
-		ft_errorp("invalid number of ants\n", p);
+		ft_errorp("Invalid number of ants\n", p);
 	}
-	else
+	else if (ft_atoi(ptr) > 0)
 	{
 		f->ants = ft_atoi(ptr);
 		ft_set_values(str, 1);
 		ft_strdel(&ptr);
 		ft_strdel(&str);
 	}
+	else
+		ft_errorp("Invalid number of ants\n", p);
 }
 
 void	ft_room(char *str, t_parse *p, t_options *s)
@@ -58,7 +60,7 @@ void	ft_comment(char *str, t_parse *p, t_options *s)
 		if (s->start)
 			ft_errorp("2 starts included\n", p);
 		else if (p->type == 2)
-			ft_errorp("start included just after end\n", p);
+			ft_errorp("Start included just after end\n", p);
 		else
 		{
 			p->type = 1;
@@ -68,9 +70,9 @@ void	ft_comment(char *str, t_parse *p, t_options *s)
 	else if (ft_strequ(str, "##end"))
 	{
 		if (s->end)
-			ft_errorp("2 end included\n", p);
+			ft_errorp("2 ends included\n", p);
 		else if (p->type == 1)
-			ft_errorp("end included just after start\n", p);
+			ft_errorp("End included just after start\n", p);
 		else
 		{
 			p->type = 2;
@@ -105,12 +107,12 @@ void	ft_link(char *str, t_parse *p, t_options *s)
 		}
 	}
 	if (p->error)
-		ft_errorp("invalid path\n", p);
+		ft_errorp("Invalid path\n", p);
 }
 
 void	ft_error(char *str, t_parse *p, t_options *s)
 {
-	ft_errorp("invalid line\n", p);
+	ft_errorp("Invalid line\n", p);
 	(void)str;
 	(void)s;
 }
