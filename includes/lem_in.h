@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:58:36 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/25 14:06:33 by gsmith           ###   ########.fr       */
+/*   Updated: 2018/01/29 17:11:57 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,21 @@ typedef struct		s_options
 	int		path;
 	int		command;
 }					t_options;
-
 typedef enum		e_rtype
 {
 	DEFAULT,
 	START,
 	END
 }					t_rtype;
+
+typedef struct		s_spit
+{
+	char	**ptr;
+	int		size1;
+	int		size2;
+	int		i;
+	int		count;
+}					t_spit;
 
 typedef struct		s_room
 {
@@ -67,6 +75,16 @@ typedef struct		s_path
 	t_list			*path;
 	struct s_path	*next;
 }					t_path;
+
+typedef struct		s_norm
+{
+	char	**ptr;
+	int		i;
+	t_room	*r1;
+	t_room	*r2;
+	int		z;
+}					t_norm;
+
 /*
 ** Usage functions
 */

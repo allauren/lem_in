@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:57:14 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/26 13:49:22 by gsmith           ###   ########.fr       */
+/*   Updated: 2018/01/28 03:50:34 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		main(int ac, const char **av)
 	if (paths)
 		path_setup(paths, s.ants);
 	// ft_printf("\n=== PATH - PRINT ===\n");
-	// path_printall(paths);
+	 //path_printall(paths);
 	// ft_printf("\n=== PATH - RUN ===\n");
 	if (paths)
 		while ((*(t_room **)(paths->path->content))->ant != s.ants)

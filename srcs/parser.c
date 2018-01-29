@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:35:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/27 18:02:47 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/28 03:56:20 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,16 @@ void	ft_init_ants(char *str, t_options *s, t_parse *p)
 		ft_is_first(str, s, p);
 	if (p->error)
 	{
-	ft_errorp(NULL, NULL);
-	ft_set_values(NULL, 0);
-	exit(1);
+		ft_errorp(NULL, NULL);
+		ft_set_values(NULL, 0);
+		exit(1);
 	}
 }
 
 void	ft_parser(t_options *s, t_link *f, t_parse *p)
 {
 	static void (*tab[4])(char*, t_parse*, t_options*) = {ft_error, ft_comment,
-			ft_room, ft_link};
+		ft_room, ft_link};
 
 	(void)f;
 	ft_init_ants(s->str, s, p);
@@ -101,5 +101,5 @@ void	ft_parser(t_options *s, t_link *f, t_parse *p)
 	ft_errorp(NULL, NULL);
 	ft_set_values(NULL, 0);
 	if (!p->error)
-	ft_select_error(p, s);
+		ft_select_error(p, s);
 }

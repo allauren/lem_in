@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:23:00 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/27 18:02:49 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/29 17:14:37 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,34 +81,28 @@ void	ft_comment(char *str, t_parse *p, t_options *s)
 
 void	ft_link(char *str, t_parse *p, t_options *s)
 {
-	char	**ptr;
-	int		i;
-	t_room	*r1;
-	t_room	*r2;
-	int		z;
+	t_norm	n;
 
-	(void)s;
-	z = 1;
-	while((ptr = ft_strsplittwo(str, z, '-')))
+	n.z = 0;
+	while (++n.z && (n.ptr = ft_strsplittwo(str, n.z, '-')))
 	{
 		p->error = 0;
-		i = -1;
-		while (ptr[++i])
+		n.i = -1;
+		while (n.ptr[++n.i] && (s->path = 1))
 		{
-			if (i == 0 && !p->error)
-				r1 = first_room(ptr[i], p->list, p);
-			else if (i == 1 && !p->error)
-				r2 = first_room(ptr[i], p->list, p);
-			ft_strdel(&ptr[i]);
+			if (n.i == 0 && !p->error)
+				n.r1 = first_room(n.ptr[n.i], p->list, p);
+			else if (n.i == 1 && !p->error)
+				n.r2 = first_room(n.ptr[n.i], p->list, p);
+			ft_strdel(&n.ptr[n.i]);
 		}
-		ft_memdel((void**)&ptr);
-		if (i == 2 && !p->error && !ft_strequ(r1->name, r2->name))
+		ft_memdel((void**)&n.ptr);
+		if (n.i == 2 && !p->error && !ft_strequ(n.r1->name, n.r2->name))
 		{
-			ft_setlink(r1, r2, p);
+			ft_setlink(n.r1, n.r2, p);
 			if (!p->error)
-				break;
+				break ;
 		}
-		z++;
 	}
 	if (p->error)
 		ft_errorp("invalid path\n", p);

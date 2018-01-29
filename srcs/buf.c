@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 16:52:31 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/27 17:57:41 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/28 03:58:45 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int			ft_set_values(char *ptr, int taille)
 		ft_strdel(&str);
 	else
 	{
-		if(str)
-		ft_printf("%s", str);
+		if (str)
+			ft_printf("%s", str);
 		ft_strdel(&str);
 	}
 	return (1);

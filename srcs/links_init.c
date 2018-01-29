@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 11:42:56 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/26 16:09:20 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/29 16:20:06 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ t_room		*first_room(char *str, t_list *list, t_parse *p)
 {
 	t_room *value;
 
-	//	ft_printf("%s\n", str);
 	if (!list)
 	{
-		//ft_errorp("new room in path\n", p);
 		p->error = 1;
 		return (NULL);
 	}
