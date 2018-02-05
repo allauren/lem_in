@@ -6,7 +6,7 @@
 /*   By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:55:36 by gsmith            #+#    #+#             */
-/*   Updated: 2018/01/26 13:45:27 by gsmith           ###   ########.fr       */
+/*   Updated: 2018/02/01 10:04:02 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@ void		path_print(t_list *lst)
 	}
 }
 
-void		path_printall(t_path *lst)
+void		path_printall(t_path *lst, t_options *s)
 {
-	if (lst)
+	if (lst && s->option == 2)
 	{
 		ft_printf("len: %-3d ant: %-3d used: %-3d path : ", ft_lstlen(lst->path)
 			, lst->ant, lst->used);
 		path_print(lst->path);
-		path_printall(lst->next);
+		path_printall(lst->next, s);
+	}
+	else if (lst && s->option == 1)
+	{
+		path_print(lst->path);
+		path_printall(lst->next, s);
 	}
 }
 

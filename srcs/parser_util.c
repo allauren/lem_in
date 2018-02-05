@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
+/*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/06 11:23:00 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/29 18:26:19 by allauren         ###   ########.fr       */
+/*   Created: 2018/02/01 16:47:06 by allauren          #+#    #+#             */
+/*   Updated: 2018/02/01 17:26:36 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ void	ft_link(char *str, t_parse *p, t_options *s)
 	t_norm	n;
 
 	n.z = 0;
-	while (++n.z && (n.ptr = ft_strsplittwo(str, n.z, '-')))
+	p->error = 1;
+	while (++n.z && (n.ptr = ft_strsplittwo(str, n.z, '-')) && p->error)
 	{
 		p->error = 0;
 		n.i = -1;
-		while (n.ptr[++n.i] && (s->path = 1))
+		while (n.ptr[++n.i])
 		{
 			if (n.i == 0 && !p->error)
 				n.r1 = first_room(n.ptr[n.i], p->list, p);
@@ -99,12 +100,9 @@ void	ft_link(char *str, t_parse *p, t_options *s)
 			ft_strdel(&n.ptr[n.i]);
 		}
 		ft_memdel((void**)&n.ptr);
-		if (n.i == 2 && !p->error && !ft_strequ(n.r1->name, n.r2->name))
-		{
-			ft_setlink(n.r1, n.r2, p);
-			if (!p->error)
-				break ;
-		}
+		if ((n.i == 2 && !p->error && !ft_strequ(n.r1->name, n.r2->name))
+				|| (!(p->error = 1)))
+			ft_setlink(n.r1, n.r2, p, s);
 	}
 	if (p->error)
 		ft_errorp("Invalid path\n", p);

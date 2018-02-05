@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:35:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/29 18:26:14 by allauren         ###   ########.fr       */
+/*   Updated: 2018/02/01 16:54:58 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int		ft_count_space(char *str)
 
 void	ft_select_error(t_parse *p, t_options *s)
 {
-	if (!s->path && !p->error)
-		ft_perror("No path written\n");
-	else if (!p->list && !p->error)
-		ft_perror("No room written\n");
+	if (!p->list && !p->error)
+		ft_errorp("No room written\n", p);
+	else if (!s->path && !p->error)
+		ft_errorp("No path written\n", p);
 	else if (!s->start && !p->error)
-		ft_perror("No start written\n");
+		ft_errorp("No start written\n", p);
 	else if (!s->end && !p->error)
-		ft_perror("No end written\n");
+		ft_errorp("No end written\n", p);
 }
 
 int		ft_smart_pars(char *str, t_parse *p, t_options *s)
@@ -51,20 +51,21 @@ int		ft_smart_pars(char *str, t_parse *p, t_options *s)
 	int		space;
 
 	space = 0;
+	(void)s;
 	if (p->error)
 		return (0);
 	else if (str[0] == '#')
 		return (1);
 	else if ((space = ft_count_space(str)) == 2)
 		return (2);
-	else if (space == 0 && (s->path = 1))
+	else if (space == 0)
 		return (3);
 	return (0);
 }
 
 void	ft_init_ants(char *str, t_options *s, t_parse *p)
 {
-	while (get_next_line(0, &str) && str[0] == '#')
+	while ((get_next_line(0, &str)) > 0 && str[0] == '#')
 	{
 		ft_comment(str, p, s);
 		if (s->start || s->end)
@@ -90,7 +91,7 @@ void	ft_parser(t_options *s, t_link *f, t_parse *p)
 
 	(void)f;
 	ft_init_ants(s->str, s, p);
-	while (!p->error && get_next_line(0, &s->str))
+	while (!p->error && (get_next_line(0, &s->str)) > 0)
 	{
 		tab[(s->init = ft_smart_pars(s->str, p, s))](s->str, p, s);
 		if (!p->error)
@@ -98,8 +99,10 @@ void	ft_parser(t_options *s, t_link *f, t_parse *p)
 		ft_strdel(&s->str);
 	}
 	ft_strdel(&(s->str));
-	ft_errorp(NULL, NULL);
-	ft_set_values(NULL, 0);
 	if (!p->error)
 		ft_select_error(p, s);
+	ft_errorp(NULL, NULL);
+	ft_set_values(NULL, 0);
+	if (p->error && (!s->path || !s->start || !s->end))
+		exit(1);
 }

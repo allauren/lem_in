@@ -6,7 +6,7 @@
 /*   By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 17:45:46 by gsmith            #+#    #+#             */
-/*   Updated: 2018/01/27 18:06:02 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/29 16:08:57 by gsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	path_dup(t_path *src, t_path **dst)
 			ft_perror("malloc error");
 		(*dst)->path = src->path;
 		while ((*dst)->path && (*dst)->path->next
-			&& !((*(t_room **)((*dst)->path->next->content))->ant))
+				&& !((*(t_room **)((*dst)->path->next->content))->ant))
 			(*dst)->path = (*dst)->path->next;
 		(*dst)->ant = src->used > src->ant ? src->ant : src->used;
 		(*dst)->used = src->used;
@@ -39,22 +39,24 @@ void		path_setup(t_path *path, int nb_ant)
 {
 	t_path		*cur;
 
-	cur = path;
-	while (cur && cur->used)
-		if (cur->next && ((cur->next->used && cur->used >= cur->next->used)
-				|| (!(cur->next->used)
-					&& cur->used >= ft_lstlen(cur->next->path) - 2)))
-			cur = cur->next;
-		else
-			break ;
-	if (!(cur->next))
-		cur = ((cur->used && path->used >= cur->used)
-				|| (!(cur->used) && path->used >= ft_lstlen(cur->path) - 2))
-			? cur : path;
-	cur->ant++;
-	cur->used = !(cur->used) ? ft_lstlen(cur->path) - 1 : cur->used + 1;
-	if (nb_ant > 1)
-		path_setup(path, nb_ant - 1);
+	while (nb_ant)
+	{
+		cur = path;
+		while (cur)
+			if (cur->next && ((cur->next->used && cur->used >= cur->next->used)
+						|| (!(cur->next->used)
+							&& cur->used >= ft_lstlen(cur->next->path) - 2)))
+				cur = cur->next;
+			else
+				break ;
+		if (!(cur->next))
+			cur = ((cur->used && path->used >= cur->used)
+					|| (!(cur->used) && path->used >= ft_lstlen(cur->path) - 2))
+				? cur : path;
+		cur->ant++;
+		cur->used = !(cur->used) ? ft_lstlen(cur->path) - 1 : cur->used + 1;
+		nb_ant--;
+	}
 }
 
 t_bool		path_runlink(t_list *lst, int nb_ant, t_bool first)

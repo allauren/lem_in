@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:58:36 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/29 17:11:57 by allauren         ###   ########.fr       */
+/*   Updated: 2018/02/01 16:36:00 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char				*ft_trim_int(const char *str);
 /*
 ** path functions
 */
-void				ft_setlink(t_room *r1, t_room *r2, t_parse *p);
+void				ft_setlink(t_room *r1, t_room *r, t_parse *p, t_options *s);
 t_room				*first_room(char *str, t_list *list, t_parse *p);
 char				**ft_strsplittwo(char *str, int begin, char c);
 /*
@@ -128,7 +128,7 @@ void				ft_errorp(char *str, t_parse *p);
 /*
 **	print functions
 */
-int					ft_set_values(char *ptr, int taille);
+void				ft_set_values(char *ptr, int taille);
 /*
 ** fonctions de lem_in
 */

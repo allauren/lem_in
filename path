@@ -1,0 +1,41 @@
+./libft/libft/ft_lstmap.c:22:	res->next = ft_lstmap(lst->next, f);
+./libft/libft/ft_lstnew.c:26:		res->content = NULL;
+./libft/libft/ft_lstnew.c:27:		res->content_size = 0;
+./libft/libft/ft_lstnew.c:31:		if (!(res->content = malloc(content_size)))
+./libft/libft/ft_lstnew.c:38:			((unsigned char *)(res->content))[i] =
+./libft/libft/ft_lstnew.c:40:		res->content_size = content_size;
+./libft/libft/ft_lstnew.c:42:	res->next = NULL;
+./public.test/42.map:106:42_Commandements-Piscine_Reloaded
+./public.test/42.map:130:ft_ls-minishel
+./public.test/42.map:188:Drivers_and_Interrupts-Filesystem
+./public.test/42.map:218:Swifty_Proteins-Swifty_Companion
+./public.test/42.map:224:In_the_Shadows-XV
+./srcs/lem_in.c:21:			s->option = 2;
+./srcs/lem_in.c:23:			s->option = 1;
+./srcs/lem_in.c:47:		while ((*(t_room **)(paths->path->content))->ant != s.ants)
+./srcs/links_init.c:52:		s->path = 1;
+./srcs/parser.c:41:	else if (!s->path && !p->error)
+./srcs/parser.c:43:	else if (!s->start && !p->error)
+./srcs/parser.c:45:	else if (!s->end && !p->error)
+./srcs/parser.c:71:		if (s->start || s->end)
+./srcs/parser.c:93:	ft_init_ants(s->str, s, p);
+./srcs/parser.c:94:	while (!p->error && (get_next_line(0, &s->str)) > 0)
+./srcs/parser.c:96:		tab[(s->init = ft_smart_pars(s->str, p, s))](s->str, p, s);
+./srcs/parser.c:98:			ft_set_values(s->str, 1);
+./srcs/parser.c:99:		ft_strdel(&s->str);
+./srcs/parser.c:101:	ft_strdel(&(s->str));
+./srcs/parser.c:106:	ft_printf("#%d#\n\n", s->path);
+./srcs/parser.c:107:	if (p->error && (!s->path || !s->start || !s->end))
+./srcs/parser_util.c:60:		value->ant = s->ants;
+./srcs/parser_util.c:72:		if (s->start)
+./srcs/parser_util.c:79:			s->start = 1;
+./srcs/parser_util.c:84:		if (s->end)
+./srcs/parser_util.c:91:			s->end = 1;
+./srcs/parser_util.c:105:		while (n.ptr[++n.i] && (s->path = 1))
+./srcs/path_init.c:66:	start = (t_room *)(rooms->content);
+./srcs/path_init.c:69:		end = (t_room *)(rooms->content);
+./srcs/path_init.c:72:		rooms = rooms->next;
+./srcs/path_util.c:27:	if (lst && s->option == 2)
+./srcs/path_util.c:34:	else if (lst && s->option == 1)
+./srcs/room_maker.c:48:	if (i == 3 && !s->path && ft_is_redundant(value, p->list))
+./srcs/room_maker.c:61:	if (ptr[0] == 'L' || s->path)

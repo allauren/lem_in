@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 11:42:56 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/29 16:20:06 by allauren         ###   ########.fr       */
+/*   Updated: 2018/02/01 17:26:37 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_room		*double_room(char *str, t_list *list)
 			: double_room(str, list->next));
 }
 
-void		ft_setlink(t_room *r1, t_room *r2, t_parse *p)
+void		ft_setlink(t_room *r1, t_room *r2, t_parse *p, t_options *s)
 {
 	t_list	*tmp;
 
@@ -49,6 +49,7 @@ void		ft_setlink(t_room *r1, t_room *r2, t_parse *p)
 		if (!(tmp = ft_lstnew(&r1, sizeof(t_room*))))
 			ft_alexis_exit();
 		ft_lstadd(&(r2->neighbour), tmp);
+		s->path = 1;
 	}
 	else
 		p->error = 1;

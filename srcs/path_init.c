@@ -6,7 +6,7 @@
 /*   By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 13:44:02 by gsmith            #+#    #+#             */
-/*   Updated: 2018/01/28 03:12:16 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:06:00 by gsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		path_setdepth(t_room *start, int d)
 {
 	t_list		*neighbour;
 
-	if (start->depth > d || !(start->depth))
+	if (start->type != END && (start->depth > d || !(start->depth)))
 	{
 		start->depth = start->type == DEFAULT ? d : 0;
 		neighbour = start->neighbour;
@@ -45,8 +45,9 @@ int			path_claim(t_room *end, t_list **path, t_path **avoid)
 	while (neighbour)
 	{
 		tmp = *(t_room **)(neighbour->content);
-		if ((tmp->type == START || !room_lstinpath(*avoid, tmp))
-			&& (!next || next->depth > tmp->depth))
+		if ((tmp->type == START && (ft_lstlen((*avoid)->path) > 2
+						|| !((*avoid)->next))) || (!room_lstinpath(*avoid, tmp)
+					&& tmp->depth > 0 && (!next || next->depth > tmp->depth)))
 			next = tmp;
 		neighbour = neighbour->next;
 	}
@@ -71,14 +72,14 @@ t_path		*path_get(t_list *rooms)
 		rooms = rooms->next;
 	}
 	path_setdepth(start, 0);
-	path = NULL;
 	path_all = NULL;
-	while (path_claim(end, &path, &path_all))
-		path = NULL;
+	while (!(path = NULL) && path_claim(end, &path, &path_all))
+		continue ;
 	tail = &path_all;
 	while (*tail && (*tail)->next)
 		tail = &((*tail)->next);
 	release_roompath(tail);
-	*tail = NULL;
+	if (!(*tail = NULL) && !path_all)
+		ft_perror("ERROR: no path between #start and #end found.");
 	return (path_all);
 }

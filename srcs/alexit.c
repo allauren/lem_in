@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:18:26 by allauren          #+#    #+#             */
-/*   Updated: 2018/01/27 18:02:48 by allauren         ###   ########.fr       */
+/*   Updated: 2018/01/30 12:07:15 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_errorp(char *str, t_parse *p)
 	}
 	else if (keep)
 	{
-		ft_set_values(keep, 1);
+		ft_set_values(keep, 2);
 		ft_strdel(&keep);
 	}
 }
