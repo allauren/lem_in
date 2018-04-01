@@ -6,38 +6,34 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 16:52:31 by allauren          #+#    #+#             */
-/*   Updated: 2018/02/01 17:26:37 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/01 17:59:57 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <unistd.h>
 
-char		*ft_realloc(char *str, int size)
+char		*ft_realloc(char *str, int size, int len)
 {
-	char	*tmp;
-
-	tmp = str;
+	if (str)
+	{
+		write(1, str, len);
+	}
 	if (!(str = ft_memalloc(size + 1)))
 		ft_alexis_exit();
-	if (tmp)
-	{
-		str = ft_strcat(str, tmp);
-		ft_strdel(&tmp);
-	}
 	return (str);
 }
 
 void		ft_set_values(char *ptr, int taille)
 {
 	static char	*str = NULL;
-	static int	i = 0;
+	static int	i = 1;
 	int			len;
 	char		*sptr;
 
 	len = str ? ft_strlen(str) : 1;
-	while ((!str && taille > 0) || (i * 4096 - len < 500))
-		str = ft_realloc(str, ++i * 4096);
+	if((!str && taille > 0) || (4096 - len < 100))
+		str = ft_realloc(str, 4096, len);
 	if (taille > 0)
 	{
 		if (taille == 2 && ft_strcat(str, "ERROR line ")
