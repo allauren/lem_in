@@ -6,7 +6,7 @@
 /*   By: allauren <allauren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 11:42:56 by allauren          #+#    #+#             */
-/*   Updated: 2018/02/01 17:26:37 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/01 18:42:40 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@ void		ft_setlink(t_room *r1, t_room *r2, t_parse *p, t_options *s)
 		ft_lstadd(&(r2->neighbour), tmp);
 		s->path = 1;
 	}
-	else
-		p->error = 1;
+	(void)p;
 }
